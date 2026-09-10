@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
+  if (window.location.pathname.replace(/\/$/, "") !== "/2") { return; }
   var css=document.createElement("link");
   css.rel="stylesheet";
   css.href="https://infocredee-gif.github.io/oem-water-assets/oem-water.css";
