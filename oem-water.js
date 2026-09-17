@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded",function(){
   document.body.appendChild(wrap);
   var emptyBox = document.querySelector(".box.sd-1");
   if (emptyBox) {
-    emptyBox.style.setProperty("height", "0", "important");
+    emptyBox.style.setProperty("height", "auto", "important");
     emptyBox.style.setProperty("min-height", "0", "important");
+    emptyBox.style.setProperty("overflow", "visible", "important");
   }
 });
