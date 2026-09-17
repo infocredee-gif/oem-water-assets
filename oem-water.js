@@ -10,8 +10,16 @@ document.addEventListener("DOMContentLoaded",function(){
   document.body.appendChild(wrap);
   var emptyBox = document.querySelector(".box.sd-1");
   if (emptyBox) {
-    emptyBox.style.setProperty("height", "auto", "important");
-    emptyBox.style.setProperty("min-height", "0", "important");
-    emptyBox.style.setProperty("overflow", "visible", "important");
+    var fixHeaderBox = function () {
+      emptyBox.style.setProperty("height", "auto", "important");
+      emptyBox.style.setProperty("min-height", "0", "important");
+      emptyBox.style.setProperty("overflow", "visible", "important");
+    };
+    fixHeaderBox();
+    var headerBoxObserver = new MutationObserver(fixHeaderBox);
+    headerBoxObserver.observe(emptyBox, { attributes: true, attributeFilter: ["style"] });
+    window.setTimeout(fixHeaderBox, 500);
+    window.setTimeout(fixHeaderBox, 1500);
+    window.setTimeout(fixHeaderBox, 3000);
   }
 });
