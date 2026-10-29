@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded",function(){
+/* ローダーから後で読み込まれても動くようにしてある（tools/make_loader.py）。
+   静的な <script src> で読んだときの動きは、書き換える前と同じ。 */
+(function () {
+  var __start = function () {
   var oemPath = window.location.pathname.replace(/\/$/, "");
   if (oemPath !== "/2" && oemPath !== "/oem/oem-water") { return; }
   var css=document.createElement("link");
@@ -63,4 +66,10 @@ document.addEventListener("DOMContentLoaded",function(){
   css.onerror = start;            /* CSSが取れなくても本文は出す */
   window.setTimeout(start, 3000); /* 保険：遅くても3秒で出す */
   document.head.appendChild(css);
-});
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", __start);
+  } else {
+    __start();
+  }
+})();
